@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     "profileapp",
     "summaryapp",
     "rest_framework",
+    "rest_framework.authtoken",
+
 ]
 
 MIDDLEWARE = [
@@ -139,6 +141,16 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 
 ]
+
+# settings.py
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

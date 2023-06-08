@@ -19,9 +19,15 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
+from rest_framework.authtoken import views
+from summaryapp.api import CrawlingList, CrawlingDetail
+
 urlpatterns = [
 
     path("admin/", admin.site.urls),
     path("summarys/", include('summaryapp.urls')),
     path("profiles/", include('profileapp.urls')),
+    path('api/crawling_list', CrawlingList.as_view(), name='crawling_list'),
+    path('api/crawling_list/<int:pk>', CrawlingDetail.as_view(), name='crawling_detail'),
+    path('api/auth', views.obtain_auth_token, name='user_auth-create'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
