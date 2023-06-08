@@ -1,0 +1,53 @@
+.god_logo {
+    font-family: 'Dancing Script', cursive;
+}
+
+.god_footer_button {
+    font-size: 0.9rem;
+}
+
+.god_header {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.god_footer {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.god-box {
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,.1);
+    border-radius: 8px;
+    border: 1px solid #dae1e8;
+    width: 25rem;
+    height: 30rem;
+}
+
+.flex-container {
+    display : flex;
+    justify-content: center;
+    margin: 2rem;
+}
+
+.god_button {
+    border: none;
+    outline: none;
+}
+
+.god_logo_input {
+    text-align : center;
+    margin: 2rem;
+    font-family: 'Dancing Script', cursive;
+}
+
+.god_textarea {
+    border: none;
+    width: 24rem;
+    height: 29.4rem;
+    margin-left:0.5rem;
+}
+
+.god_search {
+    margin-left: 6rem;
+}

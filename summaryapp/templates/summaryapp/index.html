@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h3 class="god_logo_input">요약할 기사를 입력해 주세요.</h3>
+    <div style="text-align: left; margin : 1rem 7rem;">
+        <div class="form-check form-check-inline">
+            <input type="checkbox" name="chk1" value="1" class="form-check-input cursor-pointer" id="classification1">
+            <label for="classification1" class="form-check-label cursor-pointer" style="cursor:pointer">경제</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" name="chk2" value="1" class="form-check-input cursor-pointer" id="classification2">
+            <label for="classification2" class="form-check-label cursor-pointer" style="cursor:pointer">정치</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" name="chk3" value="1" class="form-check-input cursor-pointer" id="classification3">
+            <label for="classification3" class="form-check-label cursor-pointer" style="cursor:pointer">연애</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input type="checkbox" name="chk4" value="1" class="form-check-input cursor-pointer" id="classification4">
+            <label for="classification4" class="form-check-label cursor-pointer" style="cursor:pointer">스포츠</label>
+        </div>
+    </div>
+    <div class="god_search">
+        <form action="/summarys/crawling/" method="post">
+            {% csrf_token %}
+            <input type="text" name="crawling_input">
+            <input type="submit">
+        </form>
+    </div>
+    <div class="flex-container">
+        <form action="/summarys/index/" method="post">
+            <div class="god-box">
+                {% if crawling_data %}
+                <textarea class="god_textarea" name="summary_input">{{ crawling_data.text }}</textarea>
+                {% endif %}
+            </div>
+            <div style="width: 3rem; height: 3rem; margin-left: 27rem; margin-top: -17rem;">
+                {% csrf_token %}
+                <button type="submit"
+                        style="border: none; outline: none; background-color: #ffffff; margin: 1rem auto;">
+                    <i class="fa-solid fa-arrow-right arrow-icon" style="font-size: 2rem;"></i>
+                </button>
+            </div>
+
+        </form>
+        <div style="margin: 1rem 1rem;"></div>
+        <div class="god-box">
+            {% if summary_output %}
+                <textarea class="god_textarea">{{ summary_output.text }}</textarea>
+            {% endif %}
+        </div>
+
+
+    </div>
+
+</div>
+<div class="flex-container">
+    <div style="width: 18rem; border: 1px solid #dae1e8; border-radius: 8px; margin: auto 1rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            <a href="#" class="card-link">Card link</a>
+        </div>
+    </div>
+
+    <div style="width: 18rem; border: 1px solid #dae1e8; border-radius: 8px; margin: auto 1rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            <a href="#" class="card-link">Card link</a>
+        </div>
+    </div>
+    <div style="width: 18rem; border: 1px solid #dae1e8; border-radius: 8px; margin: auto 1rem;">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                card's
+                content.</p>
+            <a href="#" class="card-link">Card link</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if not user.is_authenticated %}
+<div style="text-align: center; height: 20rem;">
+    <a href="{% url 'summaryapp:index' %}" style="text-decoration: none;">
+        <h1 class="god_logo" style="margin-top: 15rem; text-decoration: none; color: black;">Guardians of data</h1>
+    </a>
+</div>
+{% else %}
+<div>
+    <div style="text-align: center; max-width: 500px; margin: 4rem auto;">
+
+        {% if target_user.profile %}
+        <img src="{{ target_user.profile.image.url }}" alt=""
+             style="height: 10rem; width: 10rem; border-radius: 20rem; margin-bottom: 2rem;">
+        <h2>
+            {{ target_user.profile.nickname }}
+            {% if target_user == user %}
+            <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+                edit
+            </a>
+            {% endif %}
+        </h2>
+        <h5 style="margin-bottom: 3rem;">
+            {{ target_user.profile.message }}
+        </h5>
+        {% else %}
+        {% if target_user == user %}
+        <a href="{% url 'profileapp:create' %}">
+            <h2>
+                Create Profile
+            </h2>
+        </a>
+        {% endif %}
+        {% endif %}
+
+
+        {% if target_user == user %}
+        <a href="{% url 'summaryapp:update' pk=target_user.pk %}">
+            <p>
+                Change Info
+            </p>
+        </a>
+        <a href="{% url 'summaryapp:delete' pk=target_user.pk %}">
+            <p>
+                Quit
+            </p>
+        </a>
+        {% endif %}
+    </div>
+</div>
+{% endif %}
+{% endblock%}

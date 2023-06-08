@@ -1,0 +1,27 @@
+<div class="god_footer">
+    <div>
+        <h1 class="god_logo">Guardians of data</h1>
+    </div>
+    <div>
+        <span>제태성</span>
+        <span>김학진</span>
+        <span>박병준</span>
+        <span>박소연</span>
+        <span>오수연</span>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'summaryapp:login' %}?next={{ request.path }}"> <!-- 로그인 후 원래 페이지로 돌아옴 -->
+            <span>login</span>
+        </a>
+        <a href="{% url 'summaryapp:create' %}"> <!-- 로그인 후 원래 페이지로 돌아옴 -->
+            <span>signup</span>
+        </a>
+        {% else %}
+        <a href="{% url 'summaryapp:detail' pk=user.pk %}"> <!-- 로그아웃 후 원래 페이지로 돌아옴 -->
+            <span>mypage</span>
+        </a>
+        <a href="{% url 'summaryapp:logout' %}?next={{ request.path }}"> <!-- 로그아웃 후 원래 페이지로 돌아옴 -->
+            <span>logout</span>
+        </a>
+        {% endif %}
+    </div>
+</div>
