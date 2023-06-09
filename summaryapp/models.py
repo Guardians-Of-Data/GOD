@@ -6,6 +6,9 @@ class Crawling(models.Model):
     title = models.CharField(max_length=25, null=True)
     article = models.TextField()
 
+    def __str__(self):
+        return self.title
+
 class Summary(models.Model):
     text = models.TextField()
 
