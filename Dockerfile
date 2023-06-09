@@ -4,7 +4,7 @@ WORKDIR /home/
 
 RUN git clone https://github.com/Guardians-Of-Data/GOD.git
 
-WORKDIR /home/GODproject/
+WORKDIR /home/GOD/
 
 RUN pip install -r requirements.txt
 
