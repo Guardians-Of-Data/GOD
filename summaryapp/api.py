@@ -24,14 +24,14 @@ class CrawlingDetail(APIView):
         serializer = CrawlingSerializer(model)
         return Response(serializer.data)
 
-    def put(self, request, pk):
-        serializer = CrawlingSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
-
-    def delete(self, request, pk):
-        model = Crawling.objects.get(pk=pk)
-        model.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    # def put(self, request, pk):
+    #     serializer = CrawlingSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data, status=status.HTTP_201_CREATED)
+    #     return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+    #
+    # def delete(self, request, pk):
+    #     model = Crawling.objects.get(pk=pk)
+    #     model.delete()
+    #     return Response(status=status.HTTP_204_NO_CONTENT)

@@ -29,5 +29,5 @@ urlpatterns = [
     path("profiles/", include('profileapp.urls')),
     path('api/crawling_list', CrawlingList.as_view(), name='crawling_list'),
     path('api/crawling_list/<int:pk>', CrawlingDetail.as_view(), name='crawling_detail'),
-    path('api/auth', views.obtain_auth_token, name='user_auth-create'),
+    # path('api/auth', views.obtain_auth_token, name='user_auth-create'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
