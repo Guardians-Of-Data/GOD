@@ -24,5 +24,11 @@ class Godsummary(models.Model):
     datetime = models.DateTimeField()
     link = models.TextField()
 
+class Article(models.Model):
+    title = models.CharField(max_length=25, null=True)
+    article = models.TextField()
 
 
+class Emd_vector(models.Model):
+    rank = models.ForeignKey(Article, on_delete=models.CASCADE)
+    emd_vector = models.IntegerField()
