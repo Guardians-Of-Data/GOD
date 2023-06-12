@@ -5,13 +5,17 @@ import tensorflow as tf
 from transformers import TFBertForSequenceClassification
 
 class BertClassifierWithHiddenLayers:
-    def __init__(self, file_path, model_filename, model_name, max_length):
+    def __init__(self, file_path, model_filename, model_save_path, model_name, max_length):
         self.file_path = file_path
         self.model_filename = model_filename
         self.model_name = model_name
         self.max_length = max_length
-        
+        self.model_save_path = model_save_path
+        self.batch_size = 16  # Add batch_size as an attribute
+        self.epochs = 5  # Add epochs as an attribute
         self.model = None
+        self.callbacks = None  # Add callbacks as an attribute
+
         
     def build_model(self):
         monitor = 'val_loss'
@@ -21,8 +25,8 @@ class BertClassifierWithHiddenLayers:
         batch_size = 16
         epochs = 5
 
-        es = EarlyStopping(monitor=monitor, mode='max', verbose=1, patience=3)
-        callbacks = [tf.keras.callbacks.ModelCheckpoint(filepath=self.model_save_path, save_weights_only=False, monitor=monitor, mode='min', save_best_only=True), es]
+        # es = EarlyStopping(monitor=monitor, mode='max', verbose=1, patience=3)
+        self.callbacks = [tf.keras.callbacks.ModelCheckpoint(filepath=self.model_save_path, save_weights_only=False, monitor=monitor, mode='min', save_best_only=True), EarlyStopping(monitor=monitor, mode='max', verbose=1, patience=3)]
 
         loss = tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True)
         metric = tf.keras.metrics.SparseCategoricalAccuracy('accuracy')
@@ -51,13 +55,13 @@ class BertClassifierWithHiddenLayers:
         history = self.model.fit(
             {'input_ids': train_inp, 'attention_mask': train_mask},
             train_label,
-            batch_size = batch_size,
+            batch_size = self.batch_size,
             validation_data=(
                 {'input_ids': val_inp, 'attention_mask': val_mask},
                 val_label
             ),
-            epochs = epochs,
-            callbacks = callbacks
+            epochs = self.epochs,
+            callbacks = self.callbacks
         )
 
         return history, self.model
