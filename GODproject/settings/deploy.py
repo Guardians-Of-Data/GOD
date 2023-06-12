@@ -17,7 +17,9 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS=['*']
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
@@ -27,7 +29,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.mysql",
         "NAME": "django_GOD",
         "USER": "django_GOD",
-        "PASSWORD": "gkrwls34",
+        "PASSWORD": "god123",
         "HOST": "mariadb",
         "PORT": "3306",
     }

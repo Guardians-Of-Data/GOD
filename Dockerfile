@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "testing"
+RUN echo "testing12"
 
 RUN git clone https://github.com/Guardians-Of-Data/GOD.git
 
@@ -15,6 +15,8 @@ RUN pip install gunicorn
 RUN pip install mysqlclient
 
 RUN echo "SECRET_KEY=django-insecure-*_z0fq)g^w40yl5gojecey4$skx6a)p2giq_5$9b9gr)mkrmm9" > .env
+
+RUN python manage.py collectstatic
 
 EXPOSE 8000
 
