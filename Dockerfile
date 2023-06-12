@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "testing"
+RUN echo "testing1"
 
 RUN git clone https://github.com/Guardians-Of-Data/GOD.git
 
